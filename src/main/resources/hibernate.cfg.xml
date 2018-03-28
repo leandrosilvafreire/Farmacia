@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<!-- Parametro da fábrica de sessões Hibernate conversa com o banco -->
+	<session-factory>
+		<!-- Configurações da Conexão com o banco de dados -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/farmacia</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">l3@ndr0</property>
+		<!-- Pool de conexão abre uma sessão por vez -->
+		<property name="connection.pool_size">1</property>
+		<!-- SQL dialect Idioma do banco-->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		<!-- Gerenciamento do Contexto das Sessões -->
+		<property name="current_session_context_class">thread</property>
+		<!-- Cache de Segundo Nível -->
+		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+		<!-- Mostra as SQLs geradas -->
+		<property name="show_sql">true</property>
+		<!-- Cria as tabelas do banco de dados -->
+		<property name="hbm2ddl.auto">create</property>
+		
+		<!-- Mapeamento das Entidades -->
+		<mapping class="br.com.leandro.farmacia.entidade.Estado"/>
+		<mapping class="br.com.leandro.farmacia.entidade.Fabricante"/>
+		<mapping class="br.com.leandro.farmacia.entidade.Cidade"/>
+		<mapping class="br.com.leandro.farmacia.entidade.Produto"/>
+		
+	</session-factory>
+</hibernate-configuration>
