@@ -1,4 +1,4 @@
-package br.com.leandro.main;
+package br.com.leandro.farmacia.main;
 
 import org.hibernate.Session;
 
