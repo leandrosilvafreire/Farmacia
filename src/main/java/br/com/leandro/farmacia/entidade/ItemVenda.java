@@ -16,7 +16,7 @@ public class ItemVenda extends GenericDomain {
 	@Column(name = "quantidade", length = 5, nullable = false)
 	private Short quantidade;
 
-	@Column(name = "preco_parcial", precision = 6, length = 2, nullable = false)
+	@Column(name = "preco_parcial", precision = 6, scale = 2, nullable = false)
 	private BigDecimal precoParcial;
 
 	@ManyToOne

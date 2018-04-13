@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 public class Cliente extends GenericDomain {
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "data_cadastro", nullable = false, updatable = false)
+	@Column(name = "data_cadastro", nullable = false, updatable=false)
 	private Date dataCadastro = new Date(System.currentTimeMillis());
 
 	@Column(nullable = false)
