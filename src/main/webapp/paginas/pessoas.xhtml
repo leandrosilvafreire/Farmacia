@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Pessoas</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Pessoas">
+			<p:dataTable emptyMessage="Nenhum registro encontrado!"
+				paginator="true">
+				<f:facet name="header">
+					<p:commandButton value="Novo" oncomplete="PF('dlgPessoas').show();" />
+				</f:facet>
+				<p:column headerText="Código">
+				</p:column>
+				<p:column headerText="Nome">
+				</p:column>
+				<p:column headerText="CPF">
+				</p:column>
+				<p:column headerText="RG">
+				</p:column>
+				<p:column headerText="Celular">
+				</p:column>
+				<p:column headerText="Telefone">
+				</p:column>
+				<p:column headerText="E-mail">
+				</p:column>
+				<p:column headerText="Opções">
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+	<p:dialog header="Pessoas" widgetVar="dlgPessoas" draggable="false"
+		resizable="false" modal="true" closable="false">
+		<h:form>
+			<h:panelGrid columns="5">
+				<p:outputLabel value="Nome: " />
+				<p:inputText maxlength="80" size="30" />&nbsp;
+				<p:outputLabel value="CPF: " />
+				<p:inputText maxlength="14" size="30" />
+				<p:outputLabel value="RG: " />
+				<p:inputText maxlength="15" size="30" />&nbsp;
+	            <p:outputLabel value="Rua: " />
+				<p:inputText maxlength="90" size="30" />
+				<p:outputLabel value="Número: " />
+				<p:inputText maxlength="5" size="30" />&nbsp;
+				<p:outputLabel value="Bairro: " />
+				<p:inputText maxlength="50" size="30" />
+				<p:outputLabel value="Complemento: " />
+				<p:inputText maxlength="60" size="30" />&nbsp;
+				<p:outputLabel value="CEP: " />
+				<p:inputText maxlength="12" size="30" />
+				<p:outputLabel value="Cidade: " />
+				<p:selectOneMenu filter="true">
+					<f:selectItem itemValue="" itemLabel="Selecione Uma Cidade" />
+				</p:selectOneMenu>&nbsp;
+				<p:outputLabel value="Celular: " />
+				<p:inputText maxlength="16" size="30" />
+				<p:outputLabel value="Telefone: " />
+				<p:inputText maxlength="16" size="30" />&nbsp;
+				<p:outputLabel value="E-mail: " />
+				<p:inputText maxlength="60" size="30" />
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Salvar" />
+				<p:commandButton value="Fechar"
+					oncomplete="PF('dlgPessoas').hide();" />
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

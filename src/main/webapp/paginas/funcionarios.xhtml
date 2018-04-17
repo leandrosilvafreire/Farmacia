@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Funcionários</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Funcionários">
+			<p:dataTable emptyMessage="Nenhum registro encontrado!"
+				paginator="true">
+				<f:facet name="header">
+					<p:commandButton value="Novo"
+						oncomplete="PF('dlgFuncionarios').show();" />
+				</f:facet>
+				<p:column headerText="Código">
+				</p:column>
+				<p:column headerText="Funcionário">
+				</p:column>
+				<p:column headerText="CPF">
+				</p:column>
+				<p:column headerText="Data Admissão">
+				</p:column>
+				<p:column headerText="Carteira">
+				</p:column>
+				<p:column headerText="Celular">
+				</p:column>
+				<p:column headerText="Telefone">
+				</p:column>
+				<p:column headerText="E-mail">
+				</p:column>
+				<p:column headerText="Opções">
+				</p:column>
+			</p:dataTable>
+			<p:dialog header="Funcionários" widgetVar="dlgFuncionarios"
+				draggable="false" resizable="false" modal="true" closable="false">
+				<h:form>
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Nome: " />
+						<p:selectOneMenu filter="true">
+							<f:selectItem itemValue="" itemLabel="Selecione Um Funcionário" />
+						</p:selectOneMenu>
+						<p:outputLabel value="Carteira de Trabalho: " />
+						<p:inputText maxlength="20" size="10" />
+						<p:outputLabel value="Data de Admissão: " />
+						<p:calendar />
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:commandButton value="salvar" />
+						<p:commandButton value="fechar"
+							oncomplete="PF('dlgFuncionarios').hide();" />
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>
