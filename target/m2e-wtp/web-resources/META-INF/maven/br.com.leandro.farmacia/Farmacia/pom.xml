@@ -67,5 +67,11 @@
 			<artifactId>cdi-api</artifactId>
 			<version>1.2</version>
 		</dependency>
+		<!-- Omnifaces -->
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>1.14.1</version>
+		</dependency>
 	</dependencies>
 </project>

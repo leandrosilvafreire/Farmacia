@@ -9,33 +9,64 @@
 	<title>Fabricantes</title>
 </h:head>
 <h:body>
-	<h:form>
+	<p:growl id="mensagem" />
+	<h:form id="frmListaFabricante">
 		<p:panel header="Fabricantes">
-			<p:dataTable emptyMessage="Nenhum registro encontrado!"
-				paginator="true">
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado!"
+				paginator="true" value="#{fabricanteBean.fabricantes}"
+				var="fabricante" rows="9">
 				<f:facet name="header">
 					<p:commandButton value="Novo"
-						oncomplete="PF('dlgFabricantes').show();" />
+						oncomplete="PF('dlgFabricantes').show();"
+						actionListener="#{fabricanteBean.novo()}"
+						update=":frmCadastroFabricante:painel" />
 				</f:facet>
-				<p:column headerText="Código">
+				<p:column headerText="Código" sortBy="#{fabricante.codigo}">
+					<h:outputText value="#{fabricante.codigo}" />
 				</p:column>
-				<p:column headerText="Nome">
+				<p:column headerText="Nome" sortBy="#{fabricante.nome}"
+					filterBy="#{fabricante.nome}">
+					<h:outputText value="#{fabricante.nome}" />
 				</p:column>
 				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{fabricanteBean.excluir}"
+						update=":mensagem :frmListaFabricante:tabela">
+						<p:confirm header="Confirmação"
+							message="Deseja excluir o fabricante?" icon="ui-icon-alert" />
+						<f:attribute name="fabricanteSelecionado" value="#{fabricante}" />
+					</p:commandButton>
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{fabricanteBean.editar}"
+						update=":frmCadastroFabricante:painel"
+						oncomplete="PF('dlgFabricantes').show();">
+						<f:attribute name="fabricanteSelecionado" value="#{fabricante}" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
 		</p:panel>
 	</h:form>
 	<p:dialog header="Fabricantes" widgetVar="dlgFabricantes"
 		draggable="false" resizable="false" modal="true" closable="false">
-		<h:form>
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Nome: " />
-				<p:inputText size="30" maxlength="80" />
+		<h:form id="frmCadastroFabricante">
+			<h:panelGrid columns="2" id="painel">
+				<p:outputLabel for="nome" value="Nome: " />
+				<p:inputText id="nome" size="30" maxlength="80"
+					value="#{fabricanteBean.fabricante.nome}" required="true"
+					requiredMessage="O campo nome é obrigatório." />
 			</h:panelGrid>
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar"/>
-				<p:commandButton value="Fechar" oncomplete="PF('dlgFabricantes').hide();"/>
+				<p:commandButton value="Salvar"
+					actionListener="#{fabricanteBean.salvar}"
+					update=":mensagem :frmCadastroFabricante:painel :frmListaFabricante:tabela" />
+				<p:commandButton value="Fechar"
+					oncomplete="PF('dlgFabricantes').hide();" />
 			</h:panelGrid>
 		</h:form>
 	</p:dialog>

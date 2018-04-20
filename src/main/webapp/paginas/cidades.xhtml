@@ -9,38 +9,77 @@
 	<title>Cidades</title>
 </h:head>
 <h:body>
-	<h:form>
+	<p:growl id="mensagem" />
+	<h:form id="frmListaCidade">
 		<p:panel header="Cidades">
-			<p:dataTable emptyMessage="Nenhum registro encontrado!"
-				paginator="true">
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado!"
+				paginator="true" value="#{cidadeBean.cidades}" var="cidade" rows="9">
 				<f:facet name="header">
-					<p:commandButton value="Novo" oncomplete="PF('dlgCidades').show();" />
+					<p:commandButton value="Novo" oncomplete="PF('dlgCidades').show();"
+						actionListener="#{cidadeBean.novo()}"
+						update=":mensagem :frmCadastroCidade:painel" />
 				</f:facet>
-				<p:column headerText="Código">
+				<p:column headerText="Código" sortBy="#{cidade.codigo}">
+					<h:outputText value="#{cidade.codigo}" />
 				</p:column>
-				<p:column headerText="Cidade">
+				<p:column headerText="Cidade" sortBy="#{cidade.nome}"
+					filterBy="#{cidade.nome}">
+					<h:outputText value="#{cidade.nome}" />
 				</p:column>
-				<p:column headerText="Estado">
+				<p:column headerText="Estado" sortBy="#{cidade.estado.sigla}"
+					filterBy="#{cidade.estado.sigla}">
+					<h:outputText value="#{cidade.estado.sigla}" />
+					<!-- <h:outputText value=" - " />
+					<h:outputText value="#{cidade.estado.nome}" /> -->
 				</p:column>
 				<p:column headerText="Opções">
+					<p:commandButton icon='ui-icon-trash'
+						actionListener="#{cidadeBean.excluir}"
+						update=":mensagem :frmListaCidade:tabela">
+						<p:confirm header="Confirmação" message="Deseja excluir a cidade?"
+							icon="ui-icon-alert" />
+						<f:attribute name="cidadeSelecionada" value="#{cidade}" />
+					</p:commandButton>
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{cidadeBean.editar}"
+						update=":mensagem :frmCadastroCidade:painel"
+						oncomplete="PF('dlgCidades').show();">
+						<f:attribute value="#{cidade}" name="cidadeSelecionada" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-chech" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
 		</p:panel>
 	</h:form>
-	<p:dialog header="Cidades" widgetVar="dlgCidades" draggable="false" resizable="false"
-		modal="true" closable="false">
-		<h:form>
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Nome: " />
-				<p:inputText size="30" maxlength="60" />
-				<p:outputLabel value="Estado: " />
-				<p:selectOneMenu filter="true">
-					<f:selectItem itemValue="" itemLabel="Selecione Um Estado" />
+	<p:dialog header="Cidades" widgetVar="dlgCidades" draggable="false"
+		resizable="false" modal="true" closable="false">
+		<h:form id="frmCadastroCidade">
+			<h:panelGrid id="painel" columns="2">
+				<p:outputLabel for="nome" value="Nome: " />
+				<p:inputText id="nome" size="30" maxlength="60"
+					value="#{cidadeBean.cidade.nome}" required="true"
+					requiredMessage="O campo cidade é obrigatório." />
+				<p:outputLabel for="estado" value="Estado: " />
+				<p:selectOneMenu id="estado" filter="true"
+					value="#{cidadeBean.cidade.estado}"
+					converter="omnifaces.SelectItemsConverter" required="true"
+					requiredMessage="O campo estado é obrigatório.">
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Selecione Um Estado" />
+					<f:selectItems value="#{cidadeBean.estados}" var="estado"
+						itemValue="#{estado}" itemLabel="#{estado.sigla}" />
 				</p:selectOneMenu>
 			</h:panelGrid>
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" />
-				<p:commandButton value="Fechar" oncomplete="PF.('dlgCidades').hide;" />
+				<p:commandButton value="Salvar"
+					actionListener="#{cidadeBean.salvar()}"
+					update=":mensagem :frmCadastroCidade:painel :frmListaCidade:tabela" />
+				<p:commandButton value="Fechar" oncomplete="PF('dlgCidades').hide();" />
 			</h:panelGrid>
 		</h:form>
 	</p:dialog>
