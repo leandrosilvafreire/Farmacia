@@ -19,7 +19,10 @@
 					<p:commandButton value="Novo"
 						oncomplete="PF('dlgFabricantes').show();"
 						actionListener="#{fabricanteBean.novo()}"
-						update=":frmCadastroFabricante:painel" />
+						update=":frmCadastroFabricante:painel">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
 				<p:column headerText="Código" sortBy="#{fabricante.codigo}">
 					<h:outputText value="#{fabricante.codigo}" />
@@ -41,6 +44,8 @@
 						update=":frmCadastroFabricante:painel"
 						oncomplete="PF('dlgFabricantes').show();">
 						<f:attribute name="fabricanteSelecionado" value="#{fabricante}" />
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>

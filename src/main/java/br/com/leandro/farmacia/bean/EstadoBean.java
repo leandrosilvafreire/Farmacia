@@ -48,7 +48,6 @@ public class EstadoBean implements Serializable {
 			estadoDao.merge(estado);
 			if (estado.getCodigo() == null) {
 				novo();
-				estados = estadoDao.listar();
 				// Método utilizando o omnifaces
 				Messages.addGlobalInfo("Estado cadastrado com sucesso!");
 				// Antes do Omnifaces
@@ -64,9 +63,9 @@ public class EstadoBean implements Serializable {
 				// contexto.addMessage(null, mensagem);
 			} else {
 				novo();
-				estados = estadoDao.listar();
 				Messages.addGlobalInfo("Estado atualizado com sucesso!");
 			}
+			estados = estadoDao.listar();
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Erro ao tentar cadastrar o estado!");
 			erro.printStackTrace();

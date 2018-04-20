@@ -17,7 +17,10 @@
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dlgEstados').show();"
 						actionListener="#{estadoBean.novo()}"
-						update=":frmCadastroEstado:painel" />
+						update=":frmCadastroEstado:painel">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
 				<p:column headerText="Código" sortBy="#{estado.codigo}">
 					<h:outputText value="#{estado.codigo}" />
@@ -43,6 +46,8 @@
 						update=":frmCadastroEstado:painel"
 						oncomplete="PF('dlgEstados').show();">
 						<f:attribute name="estadoSelecionado" value="#{estado}" />
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>

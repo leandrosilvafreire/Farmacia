@@ -47,13 +47,12 @@ public class FabricanteBean implements Serializable {
 			fabricanteDao.merge(fabricante);
 			if (fabricante.getCodigo() == null) {
 				novo();
-				fabricantes = fabricanteDao.listar();
 				Messages.addGlobalInfo("Fabricante cadastrado com sucesso!");
 			} else {
 				novo();
-				fabricantes = fabricanteDao.listar();
 				Messages.addGlobalInfo("Fabricante atualizado com sucesso!");
 			}
+			fabricantes = fabricanteDao.listar();
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Erro ao tentar salvar o fabricante!");
 			erro.printStackTrace();

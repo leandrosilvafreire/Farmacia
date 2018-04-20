@@ -17,7 +17,10 @@
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dlgCidades').show();"
 						actionListener="#{cidadeBean.novo()}"
-						update=":mensagem :frmCadastroCidade:painel" />
+						update=":mensagem :frmCadastroCidade:painel">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
 				<p:column headerText="Código" sortBy="#{cidade.codigo}">
 					<h:outputText value="#{cidade.codigo}" />
@@ -45,6 +48,8 @@
 						update=":mensagem :frmCadastroCidade:painel"
 						oncomplete="PF('dlgCidades').show();">
 						<f:attribute value="#{cidade}" name="cidadeSelecionada" />
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
@@ -79,7 +84,8 @@
 				<p:commandButton value="Salvar"
 					actionListener="#{cidadeBean.salvar()}"
 					update=":mensagem :frmCadastroCidade:painel :frmListaCidade:tabela" />
-				<p:commandButton value="Fechar" oncomplete="PF('dlgCidades').hide();" />
+				<p:commandButton value="Fechar"
+					oncomplete="PF('dlgCidades').hide();" />
 			</h:panelGrid>
 		</h:form>
 	</p:dialog>

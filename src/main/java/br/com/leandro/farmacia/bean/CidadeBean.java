@@ -77,13 +77,12 @@ public class CidadeBean implements Serializable {
 			cidadeDao.merge(cidade);
 			if (cidade.getCodigo() == null) {
 				novo();
-				cidades = cidadeDao.listar();
 				Messages.addGlobalInfo("Cidade cadastrada com sucesso!");
 			} else {
 				novo();
-				cidades = cidadeDao.listar();
 				Messages.addGlobalInfo("Cidade atualizada com sucesso!");
 			}
+			cidades = cidadeDao.listar();
 		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Erro ao tentar salvar a cidade!");
 			erro.printStackTrace();
