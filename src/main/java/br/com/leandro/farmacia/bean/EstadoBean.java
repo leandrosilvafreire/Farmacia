@@ -49,7 +49,7 @@ public class EstadoBean implements Serializable {
 			if (estado.getCodigo() == null) {
 				novo();
 				// Método utilizando o omnifaces
-				Messages.addGlobalInfo("Estado cadastrado com sucesso!");
+				Messages.addGlobalInfo("Estado cadastrado com sucesso.");
 				// Antes do Omnifaces
 				// String msg = "Leandro Silva Freire";
 				// // Cria um objeto doi tipo faces message, tipo da informação detalhada e
@@ -63,11 +63,11 @@ public class EstadoBean implements Serializable {
 				// contexto.addMessage(null, mensagem);
 			} else {
 				novo();
-				Messages.addGlobalInfo("Estado atualizado com sucesso!");
+				Messages.addGlobalInfo("Estado atualizado com sucesso.");
 			}
 			estados = estadoDao.listar();
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Erro ao tentar cadastrar o estado!");
+			Messages.addGlobalError("Erro ao tentar cadastrar o estado.");
 			erro.printStackTrace();
 		}
 	}
@@ -78,7 +78,7 @@ public class EstadoBean implements Serializable {
 			EstadoDao estadoDao = new EstadoDao();
 			estados = estadoDao.listar();
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Erro ao tentar listar os estados");
+			Messages.addGlobalError("Erro ao tentar listar os estados.");
 			erro.printStackTrace();
 		}
 
@@ -93,9 +93,9 @@ public class EstadoBean implements Serializable {
 			EstadoDao estadoDao = new EstadoDao();
 			estadoDao.excluir(estado);
 			estados = estadoDao.listar();
-			Messages.addGlobalInfo("Estado removido com sucesso!");
+			Messages.addGlobalInfo("Estado removido com sucesso.");
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Erro ao remover o estado!");
+			Messages.addGlobalError("Erro ao remover o estado.");
 			erro.printStackTrace();
 		}
 	}

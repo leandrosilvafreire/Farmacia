@@ -54,7 +54,7 @@ public class CidadeBean implements Serializable {
 			CidadeDao cidadeDao = new CidadeDao();
 			cidades = cidadeDao.listar();
 		} catch (RuntimeException erro) {
-			Messages.addFlashGlobalError("Erro ao tentar listar as cidades!");
+			Messages.addFlashGlobalError("Erro ao tentar listar as cidades.");
 			erro.printStackTrace();
 		}
 
@@ -66,7 +66,7 @@ public class CidadeBean implements Serializable {
 			EstadoDao estadoDao = new EstadoDao();
 			estados = estadoDao.listar();
 		} catch (RuntimeException erro) {
-			Messages.addFlashGlobalError("Erro ao tentar salvar a cidade!");
+			Messages.addFlashGlobalError("Erro ao tentar salvar uma nova cidade.");
 			erro.printStackTrace();
 		}
 	}
@@ -77,14 +77,14 @@ public class CidadeBean implements Serializable {
 			cidadeDao.merge(cidade);
 			if (cidade.getCodigo() == null) {
 				novo();
-				Messages.addGlobalInfo("Cidade cadastrada com sucesso!");
+				Messages.addGlobalInfo("Cidade cadastrada com sucesso.");
 			} else {
 				novo();
-				Messages.addGlobalInfo("Cidade atualizada com sucesso!");
+				Messages.addGlobalInfo("Cidade atualizada com sucesso.");
 			}
 			cidades = cidadeDao.listar();
 		} catch (RuntimeException erro) {
-			Messages.addFlashGlobalError("Erro ao tentar salvar a cidade!");
+			Messages.addFlashGlobalError("Erro ao tentar salvar a cidade.");
 			erro.printStackTrace();
 		}
 
@@ -96,8 +96,9 @@ public class CidadeBean implements Serializable {
 			CidadeDao cidadeDao = new CidadeDao();
 			cidadeDao.excluir(cidade);
 			cidades = cidadeDao.listar();
+			Messages.addGlobalInfo("Cidade removida com sucesso.");
 		} catch (RuntimeException erro) {
-			Messages.addFlashGlobalError("Erro ao tentar excluir a cidade!");
+			Messages.addFlashGlobalError("Erro ao tentar remover a cidade.");
 			erro.printStackTrace();
 		}
 
@@ -109,7 +110,7 @@ public class CidadeBean implements Serializable {
 			EstadoDao estadoDao = new EstadoDao();
 			estados = estadoDao.listar();
 		} catch (RuntimeException erro) {
-			Messages.addFlashGlobalError("Erro ao tentar selecionar a cidade!");
+			Messages.addFlashGlobalError("Erro ao tentar selecionar a cidade.");
 			erro.printStackTrace();
 		}
 

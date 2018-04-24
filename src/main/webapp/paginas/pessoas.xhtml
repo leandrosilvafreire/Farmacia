@@ -9,36 +9,66 @@
 	<title>Pessoas</title>
 </h:head>
 <h:body>
-	<h:form>
+	<p:growl id="mensagem" />
+	<h:form id="frmListaPessoas">
 		<p:panel header="Pessoas">
-			<p:dataTable emptyMessage="Nenhum registro encontrado!"
-				paginator="true">
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado!"
+				paginator="true" value="#{pessoaBean.pessoas}" var="pessoa" rows="9">
 				<f:facet name="header">
-					<p:commandButton value="Novo" oncomplete="PF('dlgPessoas').show();" />
+					<p:commandButton value="Novo" oncomplete="PF('dlgPessoas').show();">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
-				<p:column headerText="Código">
+				<p:column headerText="Código" sortBy="#{pessoa.codigo}">
+					<h:outputText value="#{pessoa.codigo}" />
 				</p:column>
-				<p:column headerText="Nome">
+				<p:column headerText="Nome" sortBy="#{pessoa.nome}"
+					filterBy="#{pessoa.nome}">
+					<h:outputText value="#{pessoa.nome}" />
 				</p:column>
-				<p:column headerText="CPF">
+				<p:column headerText="CPF" sortBy="#{pessoa.cpf}"
+					filterBy="#{pessoa.cpf}">
+					<h:outputText value="#{pessoa.cpf}" />
 				</p:column>
-				<p:column headerText="RG">
+				<p:column headerText="RG" sortBy="#{pessoa.rg}"
+					filterBy="#{pessoa.rg}">
+					<h:outputText value="#{pessoa.rg}" />
 				</p:column>
-				<p:column headerText="Celular">
+				<p:column headerText="Celular" sortBy="#{pessoa.celular}"
+					filterBy="#{pessoa.celular}">
+					<h:outputText value="#{pessoa.celular}" />
 				</p:column>
-				<p:column headerText="Telefone">
+				<p:column headerText="Telefone" sortBy="#{pessoa.telefone}"
+					filterBy="#{pessoa.telefone}">
+					<h:outputText value="#{pessoa.telefone}" />
 				</p:column>
-				<p:column headerText="E-mail">
+				<p:column headerText="E-mail" sortBy="#{pessoa.email}"
+					filterBy="#{pessoa.email}">
+					<h:outputText value="#{pessoa.email}" />
 				</p:column>
 				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-trash"
+						update=":mensagem :frmListaPessoas:tabela">
+						<p:confirm header="Confirmação" message="deseja excluir a pessoa?"
+							icon="ui-icon-alert" />
+						<f:attribute name="pessoaSelecionada" value="#{pessoa}" />
+					</p:commandButton>
+					<p:commandButton icon="ui-icon-pencil"
+						update=":mensagem :frmCadastroPessoa:painel"
+						oncomplete="PF('dlgPessoa').show();">
+						<f:attribute name="pessoaSelecionada" value="#{pessoa}" />
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</p:panel>
 	</h:form>
 	<p:dialog header="Pessoas" widgetVar="dlgPessoas" draggable="false"
 		resizable="false" modal="true" closable="false">
-		<h:form>
-			<h:panelGrid columns="5">
+		<h:form id="frmCadastroPessoa">
+			<h:panelGrid id="painel" columns="5">
 				<p:outputLabel value="Nome: " />
 				<p:inputText maxlength="80" size="30" />&nbsp;
 				<p:outputLabel value="CPF: " />

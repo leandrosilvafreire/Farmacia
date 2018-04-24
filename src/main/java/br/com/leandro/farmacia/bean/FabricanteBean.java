@@ -47,14 +47,14 @@ public class FabricanteBean implements Serializable {
 			fabricanteDao.merge(fabricante);
 			if (fabricante.getCodigo() == null) {
 				novo();
-				Messages.addGlobalInfo("Fabricante cadastrado com sucesso!");
+				Messages.addGlobalInfo("Fabricante cadastrado com sucesso.");
 			} else {
 				novo();
-				Messages.addGlobalInfo("Fabricante atualizado com sucesso!");
+				Messages.addGlobalInfo("Fabricante atualizado com sucesso.");
 			}
 			fabricantes = fabricanteDao.listar();
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Erro ao tentar salvar o fabricante!");
+			Messages.addGlobalError("Erro ao tentar salvar o fabricante.");
 			erro.printStackTrace();
 		}
 	}
@@ -65,7 +65,7 @@ public class FabricanteBean implements Serializable {
 			FabricanteDao fabricanteDao = new FabricanteDao();
 			fabricantes = fabricanteDao.listar();
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Erro ao tentar listar os fabricantes!");
+			Messages.addGlobalError("Erro ao tentar listar os fabricantes.");
 			erro.printStackTrace();
 		}
 
@@ -77,9 +77,9 @@ public class FabricanteBean implements Serializable {
 			FabricanteDao fabricanteDao = new FabricanteDao();
 			fabricanteDao.excluir(fabricante);
 			fabricantes = fabricanteDao.listar();
-			Messages.addGlobalInfo("Fabricante removido com sucesso!");
+			Messages.addGlobalInfo("Fabricante removido com sucesso.");
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Erro ao tentar excluir o fabricante!");
+			Messages.addGlobalError("Erro ao tentar remover o fabricante.");
 		}
 	}
 
