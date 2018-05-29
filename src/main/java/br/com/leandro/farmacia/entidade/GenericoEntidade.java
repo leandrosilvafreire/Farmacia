@@ -12,7 +12,7 @@ import javax.persistence.MappedSuperclass;
 // Esta anotação significa classe não pertence a uma tabela, mas sera gerada por
 // outras
 @MappedSuperclass
-public class GenericDomain implements Serializable {
+public class GenericoEntidade implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,7 +47,7 @@ public class GenericDomain implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GenericDomain other = (GenericDomain) obj;
+		GenericoEntidade other = (GenericoEntidade) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

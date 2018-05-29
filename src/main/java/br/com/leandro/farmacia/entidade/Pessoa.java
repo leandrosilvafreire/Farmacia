@@ -9,44 +9,44 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="farmacia_pessoa")
-public class Pessoa extends GenericDomain{
-	
-	@Column(name ="nome", length=80, nullable=false)
+@Table(name = "farmacia_pessoa")
+public class Pessoa extends GenericoEntidade {
+
+	@Column(name = "nome", length = 80, nullable = false)
 	private String nome;
-	
-	@Column(name = "cpf", length=14, nullable=false)
+
+	@Column(name = "cpf", length = 14, nullable = false)
 	private String cpf;
-	
-	@Column(name="rg", length=15)
+
+	@Column(name = "rg", length = 15)
 	private String rg;
-	
-	@Column(name="rua", length=90, nullable=false)
+
+	@Column(name = "rua", length = 90, nullable = false)
 	private String rua;
-	
-	@Column(name="numero", length=6, nullable=false)
+
+	@Column(name = "numero", nullable = false)
 	private Short numero;
-	
-	@Column(name="bairro", length=50)
+
+	@Column(name = "bairro", length = 50)
 	private String bairro;
-	
-	@Column(name="cep", length=12)
+
+	@Column(name = "cep", length = 12)
 	private String cep;
-	
-	@Column(name="complemento", length=60)
+
+	@Column(name = "complemento", length = 60)
 	private String complemento;
-	
-	@Column(name="celular", length=16, nullable=false)
+
+	@Column(name = "celular", length = 16, nullable = false)
 	private String celular;
-	
-	@Column(name="telefone", length=16)
+
+	@Column(name = "telefone", length = 16)
 	private String telefone;
-	
-	@Column(name="email", length=60)
+
+	@Column(name = "email", length = 60)
 	private String email;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="cidade", nullable=false)
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "cidade", nullable = false)
 	private Cidade cidade;
 
 	public String getNome() {
@@ -144,7 +144,5 @@ public class Pessoa extends GenericDomain{
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	
-	
 
 }

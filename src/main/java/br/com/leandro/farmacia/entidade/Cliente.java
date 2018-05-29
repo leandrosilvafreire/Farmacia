@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "farmacia_cliente")
-public class Cliente extends GenericDomain {
+public class Cliente extends GenericoEntidade {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data_cadastro", nullable = false, updatable=false)

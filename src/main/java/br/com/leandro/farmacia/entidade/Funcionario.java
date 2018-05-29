@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "farmacia_funcionario")
-public class Funcionario extends GenericDomain{
+public class Funcionario extends GenericoEntidade{
 	
 	@Column(name="carteira_admissao", length=20, nullable=false)
 	private String carteiraAdmissao;

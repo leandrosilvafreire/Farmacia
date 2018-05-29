@@ -77,7 +77,7 @@
 					<f:selectItem noSelectionOption="true"
 						itemLabel="Selecione Um Estado" />
 					<f:selectItems value="#{cidadeBean.estados}" var="estado"
-						itemValue="#{estado}" itemLabel="#{estado.sigla}" />
+						itemValue="#{estado}" itemLabel="#{estado.sigla} - #{estado.nome}" />
 				</p:selectOneMenu>
 			</h:panelGrid>
 			<h:panelGrid columns="2">

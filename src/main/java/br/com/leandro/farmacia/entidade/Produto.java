@@ -8,11 +8,12 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "farmacia_Produto")
-public class Produto extends GenericDomain {
+public class Produto extends GenericoEntidade {
 
 	@Column(name = "nome", length = 80, nullable = false)
 	private String nome;
@@ -26,6 +27,10 @@ public class Produto extends GenericDomain {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "fabricante", nullable = false)
 	private Fabricante fabricante;
+
+	// Armazena o caminho da foto temporária
+	@Transient
+	private String caminho;
 
 	public String getNome() {
 		return nome;
@@ -57,6 +62,14 @@ public class Produto extends GenericDomain {
 
 	public void setFabricante(Fabricante fabricante) {
 		this.fabricante = fabricante;
+	}
+
+	public String getCaminho() {
+		return caminho;
+	}
+
+	public void setCaminho(String caminho) {
+		this.caminho = caminho;
 	}
 
 }

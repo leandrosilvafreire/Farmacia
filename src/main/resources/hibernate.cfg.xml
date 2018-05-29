@@ -12,7 +12,7 @@
 		<property name="connection.password">l3@ndr0</property>
 		<!-- Pool de conexão abre uma sessão por vez -->
 		<property name="connection.pool_size">1</property>
-		<!-- SQL dialect Idioma do banco-->
+		<!-- SQL dialect Idioma do banco -->
 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 		<!-- Gerenciamento do Contexto das Sessões -->
 		<property name="current_session_context_class">thread</property>
@@ -22,21 +22,21 @@
 		<property name="show_sql">true</property>
 		<!-- Cria as tabelas do banco de dados -->
 		<property name="hbm2ddl.auto">validate</property>
-		
+
 		<!-- Mapeamento das Entidades -->
-		<mapping class="br.com.leandro.farmacia.entidade.Cidade"/>
-		<mapping class="br.com.leandro.farmacia.entidade.Cliente"/>
-		<mapping class="br.com.leandro.farmacia.entidade.Estado"/>
-		<mapping class="br.com.leandro.farmacia.entidade.Fabricante"/>
-		<mapping class="br.com.leandro.farmacia.entidade.Funcionario"/>
-		<mapping class="br.com.leandro.farmacia.entidade.ItemVenda"/>
-		<mapping class="br.com.leandro.farmacia.entidade.Pessoa"/>
-		<mapping class="br.com.leandro.farmacia.entidade.Produto"/>
-		<mapping class="br.com.leandro.farmacia.entidade.Usuario"/>
-		<mapping class="br.com.leandro.farmacia.entidade.Venda"/>
-		
-		
-		
-		
+		<mapping class="br.com.leandro.farmacia.entidade.Cidade" />
+		<mapping class="br.com.leandro.farmacia.entidade.Cliente" />
+		<mapping class="br.com.leandro.farmacia.entidade.Estado" />
+		<mapping class="br.com.leandro.farmacia.entidade.Fabricante" />
+		<mapping class="br.com.leandro.farmacia.entidade.Funcionario" />
+		<mapping class="br.com.leandro.farmacia.entidade.ItemVenda" />
+		<mapping class="br.com.leandro.farmacia.entidade.Pessoa" />
+		<mapping class="br.com.leandro.farmacia.entidade.Produto" />
+		<mapping class="br.com.leandro.farmacia.entidade.Usuario" />
+		<mapping class="br.com.leandro.farmacia.entidade.Venda" />
+
+
+
+
 	</session-factory>
 </hibernate-configuration>

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "farmacia_item_venda")
-public class ItemVenda extends GenericDomain {
+public class ItemVenda extends GenericoEntidade {
 
 	@Column(name = "quantidade", length = 5, nullable = false)
 	private Short quantidade;

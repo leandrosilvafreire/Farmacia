@@ -9,56 +9,91 @@
 	<title>Clientes</title>
 </h:head>
 <h:body>
-	<h:form>
+	<p:growl id="mensagem" />
+	<h:form id="frmListaClientes">
 		<p:panel header="Clientes">
-			<p:dataTable emptyMessage="Nenhum registro encontrado!"
-				paginator="true">
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado!"
+				paginator="true" value="#{clienteBean.clientes}" rows="9"
+				var="cliente">
 				<f:facet name="header">
 					<p:commandButton value="Novo"
-						oncomplete="PF('dlgClientes').show();" />
+						oncomplete="PF('dlgClientes').show();"
+						actionListener="#{clienteBean.novo()}"
+						update=":mensagem :frmCadastroCliente:painel">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
-				<p:column headerText="Código">
+				<p:column headerText="Código" sortBy="#{cliente.codigo}">
+					<h:outputText value="#{cliente.codigo}" />
 				</p:column>
-				<p:column headerText="Cliente">
+				<p:column headerText="Nome" sortBy="#{cliente.pessoa.nome}"
+					filterBy="#{cliente.pessoa.nome}">
+					<h:outputText value="#{cliente.pessoa.nome}" />
 				</p:column>
-				<p:column headerText="CPF">
+				<p:column headerText="CPF" sortBy="#{cliente.pessoa.cpf}"
+					filterBy="#{cliente.pessoa.cpf}">
+					<h:outputText value="#{cliente.pessoa.cpf}" />
 				</p:column>
-				<p:column headerText="Endereço">
+				<p:column headerText="Data Cadastro"
+					sortBy="#{cliente.dataCadastro}">
+					<h:outputText value="#{cliente.dataCadastro}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"
+							timeZone="America/Sao_Paulo" />
+					</h:outputText>
 				</p:column>
-				<p:column headerText="Número">
-				</p:column>
-				<p:column headerText="Bairro">
-				</p:column>
-				<p:column headerText="Cep">
-				</p:column>
-				<p:column headerText="Cidade">
-				</p:column>
-				<p:column headerText="Celular">
-				</p:column>
-				<p:column headerText="E-mail">
-				</p:column>
-				<p:column headerText="Data Cadastro">
-				</p:column>
-				<p:column headerText="Liberado">
+				<p:column headerText="Liberado" sortBy="#{cliente.liberado}">
+					<p:selectBooleanCheckbox value="#{cliente.liberado}"
+						disabled="true" />
 				</p:column>
 				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{clienteBean.excluir}"
+						update=":mensagem :frmListaClientes:tabela">
+						<p:confirm header="Confirmação"
+							message="Deseja excluir o cliente?" icon="ui-icon-alert" />
+						<f:attribute name="clienteSelecionado" value="#{cliente}" />
+					</p:commandButton>
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{clienteBean.editar}"
+						update=":mensagem :frmCadastroCliente:painel"
+						oncomplete="PF('dlgClientes').show();">
+						<f:attribute name="clienteSelecionado" value="#{cliente}" />
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-chech" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
 		</p:panel>
 	</h:form>
 	<p:dialog header="Clientes" widgetVar="dlgClientes" draggable="false"
 		resizable="false" modal="true" closable="false">
-		<h:form>
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Cliente: " />
-				<p:selectOneMenu filter="true">
-					<f:selectItem itemValue="" itemLabel="Selecione Um Cliente" />
+		<h:form id="frmCadastroCliente">
+			<h:panelGrid id="painel" columns="2">
+				<p:outputLabel for="nome" value="Nome: " />
+				<p:selectOneMenu id="nome" filter="true"
+					value="#{clienteBean.cliente.pessoa}" required="true"
+					requiredMessage="O campo nome é obrigatório."
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Selecione Uma Pessoa" />
+					<f:selectItems value="#{clienteBean.pessoas}" var="pessoa"
+						itemValue="#{pessoa}" itemLabel="#{pessoa.nome}" />
 				</p:selectOneMenu>
-				<p:outputLabel value="Ativo: " />
-				<p:selectBooleanCheckbox />
+				<p:outputLabel for="liberado" value="Liberado: " />
+				<p:selectBooleanCheckbox id="liberado"
+					value="#{clienteBean.cliente.liberado}" />
 			</h:panelGrid>
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" />
+				<p:commandButton value="Salvar"
+					actionListener="#{clienteBean.salvar()}"
+					update=":mensagem :frmCadastroCliente:painel :frmListaClientes:tabela" />
 				<p:commandButton value="Fechar"
 					oncomplete="PF('dlgClientes').hide();" />
 			</h:panelGrid>

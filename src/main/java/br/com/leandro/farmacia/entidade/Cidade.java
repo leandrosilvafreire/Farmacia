@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="farmacia_cidade")
-public class Cidade extends GenericDomain{
+public class Cidade extends GenericoEntidade{
 	
 	@Column(name= "nome", length=60, nullable=false)
 	private String nome;

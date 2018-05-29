@@ -52,7 +52,7 @@
 						actionListener="#{produtoBean.excluir}"
 						update=":mensagem :frmListaProdutos:tabela">
 						<p:confirm header="Confirmação"
-							message="deseja excluir o produto?" icon="ui-icon-alert" />
+							message="Deseja excluir o produto?" icon="ui-icon-alert" />
 						<f:attribute name="produtoSelecionado" value="#{produto}" />
 					</p:commandButton>
 					<p:commandButton icon="ui-icon-pencil"
@@ -73,9 +73,9 @@
 			</p:confirmDialog>
 		</p:panel>
 	</h:form>
-	<p:dialog header="Produtos" widgetVar="dlgProdutos" draggable="false"
+	<p:dialog header="Produtos" widgetVar="dlgProdutos" draggable="true"
 		resizable="false" modal="true" closable="false">
-		<h:form id="frmCadastroProduto">
+		<h:form id="frmCadastroProduto" enctype="multipart/form-data">
 			<h:panelGrid id="painel" columns="2">
 				<p:outputLabel for="nome" value="Nome: " />
 				<p:inputText id="nome" size="30" maxlength="80"
@@ -108,6 +108,15 @@
 					<f:selectItems value="#{produtoBean.fabricantes}" var="fabricante"
 						itemValue="#{fabricante}" itemLabel="#{fabricante.nome}" />
 				</p:selectOneMenu>
+				<p:outputLabel for="upload" value="Upload: " />
+				<p:fileUpload id="upload" mode="advanced"
+					fileUploadListener="#{produtoBean.upload}"
+					update=":mensagem :frmCadastroProduto:foto" auto="true" />
+				<p:outputLabel for="foto" value="Foto: " />
+				<p:graphicImage id="foto" value="#{imagemBean.foto}" width="200"
+					height="200">
+					<f:param name="caminho" value="#{produtoBean.produto.caminho}" />
+				</p:graphicImage>
 			</h:panelGrid>
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar"
